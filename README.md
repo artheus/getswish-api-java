@@ -6,7 +6,7 @@ There comes no warranty with this library whatsoever.
 
 This project is Licenced with The Unlicense http://unlicense.org/
 
-Please read the LICENSE.md or refer to the link in the row above for more information about the license
+Please read the [LICENSE.md](./LICENSE.md) or refer to the link in the row above for more information about the license
 
 # Important! Certificates for testing
 
