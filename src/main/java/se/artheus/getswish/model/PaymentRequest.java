@@ -75,7 +75,7 @@ public class PaymentRequest {
     private String payerAlias;
     private String message;
 
-    Builder(String callbackUrl, String payeeAlias, Integer amount, Currency currency) {
+    public Builder(String callbackUrl, String payeeAlias, Integer amount, Currency currency) {
       this.callbackUrl = callbackUrl;
       this.payeeAlias = payeeAlias;
       this.amount = amount;

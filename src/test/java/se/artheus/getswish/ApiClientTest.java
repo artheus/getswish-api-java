@@ -14,15 +14,12 @@ public class ApiClientTest {
   public void testRequestPayment() throws JsonProcessingException {
     ApiClient client = new ApiClient();
 
-    // TODO: create builders for this, to check if mandatory fields are filled or not.
-    PaymentRequest request = new PaymentRequest(
-        "0123456789",
+    PaymentRequest request = new PaymentRequest.Builder(
         "https://example.com/api/swishcb/paymentrequests",
         "1231181189",
         100,
-        Currency.SEK,
-        "Kingston USB Flash Drive 8 GB"
-    );
+        Currency.SEK
+    ).withMessage("Kingston USB Flash Drive 8 GB").withPayeePaymentReference("0123456789").build();
 
     PaymentResponse response = client.requestPayment(request);
     System.out.println(response.getLocation());
@@ -30,17 +27,16 @@ public class ApiClientTest {
   }
 
   @Test
-  public void testRequestRefund() throws Exception {
+  public void testRequestRefund() throws JsonProcessingException {
     ApiClient client = new ApiClient();
 
-    // TODO: create builders for this, to check if mandatory fields are filled or not.
-    RefundRequest request = new RefundRequest();
-    request.setPayerPaymentReference("0123456789");
-    request.setCallbackUrl("https://example.com/api/swishcb/paymentrequests");
-    request.setPayeeAlias("1231181189");
-    request.setAmount(179);
-    request.setCurrency(Currency.SEK);
-    request.setMessage("Kingston USB Flash Drive 16 GB");
+    RefundRequest request = new RefundRequest.Builder(
+        "0123456789",
+        "https://example.com/api/swishcb/paymentrequests",
+        "1231181189",
+        179,
+        Currency.SEK
+    ).withMessage("Kingston USB Flash Drive 16 GB").withPayeeAlias("1231181189").build();
 
     RefundResponse response = client.requestRefund(request);
     System.out.println(response.getLocation());

@@ -1,85 +1,106 @@
 package se.artheus.getswish.model;
 
 public class RefundRequest {
-  private String payerPaymentReference;
-  private String originalPaymentReference;
-  private String paymentReference;
-  private String callbackUrl;
-  private String payerAlias;
-  private String payeeAlias;
-  private Integer amount;
-  private Currency currency;
-  private String message;
+  private final String payerPaymentReference;
+  private final String originalPaymentReference;
+  private final String paymentReference;
+  private final String callbackUrl;
+  private final String payerAlias;
+  private final String payeeAlias;
+  private final Integer amount;
+  private final Currency currency;
+  private final String message;
+
+  private RefundRequest(Builder builder) {
+    this.payerPaymentReference = builder.payerPaymentReference;
+    this.originalPaymentReference = builder.originalPaymentReference;
+    this.paymentReference = builder.paymentReference;
+    this.callbackUrl = builder.callbackUrl;
+    this.payerAlias = builder.payerAlias;
+    this.payeeAlias = builder.payeeAlias;
+    this.amount = builder.amount;
+    this.currency = builder.currency;
+    this.message = builder.message;
+  }
 
   public String getPayerPaymentReference() {
     return payerPaymentReference;
-  }
-
-  public void setPayerPaymentReference(String payerPaymentReference) {
-    this.payerPaymentReference = payerPaymentReference;
   }
 
   public String getOriginalPaymentReference() {
     return originalPaymentReference;
   }
 
-  public void setOriginalPaymentReference(String originalPaymentReference) {
-    this.originalPaymentReference = originalPaymentReference;
-  }
-
   public String getPaymentReference() {
     return paymentReference;
-  }
-
-  public void setPaymentReference(String paymentReference) {
-    this.paymentReference = paymentReference;
   }
 
   public String getCallbackUrl() {
     return callbackUrl;
   }
 
-  public void setCallbackUrl(String callbackUrl) {
-    this.callbackUrl = callbackUrl;
-  }
-
   public String getPayerAlias() {
     return payerAlias;
-  }
-
-  public void setPayerAlias(String payerAlias) {
-    this.payerAlias = payerAlias;
   }
 
   public String getPayeeAlias() {
     return payeeAlias;
   }
 
-  public void setPayeeAlias(String payeeAlias) {
-    this.payeeAlias = payeeAlias;
-  }
-
   public Integer getAmount() {
     return amount;
-  }
-
-  public void setAmount(Integer amount) {
-    this.amount = amount;
   }
 
   public Currency getCurrency() {
     return currency;
   }
 
-  public void setCurrency(Currency currency) {
-    this.currency = currency;
-  }
-
   public String getMessage() {
     return message;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
+  public static class Builder {
+    private final String originalPaymentReference;
+    private final String callbackUrl;
+    private final String payerAlias;
+    private final Integer amount;
+    private final Currency currency;
+
+    private String payerPaymentReference;
+    private String paymentReference;
+    private String payeeAlias;
+    private String message;
+
+    public Builder(String originalPaymentReference, String callbackUrl, String payerAlias, Integer amount, Currency currency) {
+      this.originalPaymentReference = originalPaymentReference;
+      this.callbackUrl = callbackUrl;
+      this.payerAlias = payerAlias;
+      this.amount = amount;
+      this.currency = currency;
+    }
+
+    public Builder withPayerPaymentReference(String payerPaymentReference) {
+      this.payerPaymentReference = payerPaymentReference;
+      return this;
+    }
+
+    public Builder withPaymentReference(String paymentReference) {
+      this.paymentReference = paymentReference;
+      return this;
+    }
+
+    public Builder withPayeeAlias(String payeeAlias) {
+      this.payeeAlias = payeeAlias;
+      return this;
+    }
+
+    public Builder withMessage(String message) {
+      this.message = message;
+      return this;
+    }
+
+    public RefundRequest build() {
+      return new RefundRequest(this);
+    }
   }
 }
